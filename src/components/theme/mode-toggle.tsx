@@ -1,4 +1,3 @@
-// src/components/ModeToggle.tsx
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import { setTheme, Theme } from '../../redux/slices/themeSlices';
 import { Moon, Sun } from "lucide-react";
