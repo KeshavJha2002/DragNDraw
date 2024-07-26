@@ -5,7 +5,7 @@ import { ControlPanel } from "./components/ControlPanel"
 const App = () => {
   return (
     <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
-      <ModeToggle></ModeToggle>
+      <ModeToggle/>
       <ControlPanel/>
     </ThemeProvider>
   )

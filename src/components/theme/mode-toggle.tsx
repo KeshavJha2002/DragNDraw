@@ -1,14 +1,14 @@
-import { useState } from 'react';
-import { Moon, Sun } from "lucide-react"
-import { useTheme, Theme } from "./theme-provider"
+// src/components/ModeToggle.tsx
+import { useAppDispatch, useAppSelector } from '../../redux/hooks';
+import { setTheme, Theme } from '../../redux/slices/themeSlices';
+import { Moon, Sun } from "lucide-react";
 
 export function ModeToggle() {
-  const { setTheme } = useTheme();
-  const [activeTheme, setActiveTheme] = useState('light');
+  const dispatch = useAppDispatch();
+  const theme = useAppSelector((state) => state.theme.theme);
 
-  const handleThemeChange = ( theme:Theme ) => {
-    setTheme(theme)
-    setActiveTheme(theme)
+  const handleThemeChange = (theme: Theme) => {
+    dispatch(setTheme(theme));
   };
 
   return (
@@ -17,22 +17,22 @@ export function ModeToggle() {
         <button
           aria-label="Sun"
           className={`p-2 rounded-l-lg flex items-center hover:bg-hover-bg-color hover:text-black justify-center ${
-            activeTheme === 'light' ? 'bg-hover-bg-color text-primary hover:bg-hover-bg-color hover:text-primary' : 'hover:bg-[#f0f0fd]'
+            theme === 'light' ? 'bg-hover-bg-color text-primary' : 'hover:bg-[#f0f0fd]'
           }`}
-          onClick={() => handleThemeChange("light")}
+          onClick={() => handleThemeChange('light')}
         >
           <Sun className="w-[1.2rem] h-[1.2rem]" />
         </button>
         <button
           aria-label="Moon"
           className={`p-2 flex rounded-r-lg items-center justify-center hover:bg-hover-bg-color hover:text-black ${
-            activeTheme === 'dark' ? 'bg-hover-bg-color text-primary hover:bg-hover-bg-color hover:text-primary' : 'hover:bg-[#f0f0fd]'
+            theme === 'dark' ? 'bg-hover-bg-color text-primary' : 'hover:bg-[#f0f0fd]'
           }`}
-          onClick={() => handleThemeChange("dark")}
+          onClick={() => handleThemeChange('dark')}
         >
           <Moon className="w-[1.2rem] h-[1.2rem]" />
         </button>
       </div>
     </div>
-  )
+  );
 }
